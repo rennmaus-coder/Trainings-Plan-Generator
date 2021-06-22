@@ -31,20 +31,22 @@ namespace Trainings_plan_Generator
         {
             bool ret = true;
             int counter = 0;
-            feedback.Text = "";
+            training.BorderBrush = System.Windows.Media.Brushes.Gray;
+            name.BorderBrush = System.Windows.Media.Brushes.Gray;
+            length.BorderBrush = System.Windows.Media.Brushes.Gray;
             if (training.Text.Equals(""))
             {
-                feedback.Text += "\nPlease fill the \"Training Length (Minutes)\" Field!";
+                training.BorderBrush = System.Windows.Media.Brushes.Red;
                 ret = false;
             }
             if (name.Text.Equals(""))
             {
-                feedback.Text += "\nPlease fill the name Field!";
+                name.BorderBrush = System.Windows.Media.Brushes.Red;
                 ret = false;
             }
             if (length.Text.Equals(""))
             {
-                feedback.Text += "\nPlease fill the Length Field!";
+                length.BorderBrush = System.Windows.Media.Brushes.Red;
                 ret = false;
             }
             if (abs.IsChecked.Value)
@@ -72,10 +74,6 @@ namespace Trainings_plan_Generator
             {
                 feedback.Text += "\nAt least two checkboxes must be checked!";
                 ret = false;
-            }
-            if (ret)
-            {
-                feedback.Text = "";
             }
             return ret;
         }
