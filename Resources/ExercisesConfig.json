@@ -1,0 +1,127 @@
+[
+  {
+    "Name": "Push Up",
+    "Stages": {
+      "EASY": 10,
+      "MEDIUM": 25,
+      "INTENSE": 35,
+      "HARD": 45
+    },
+    "Muscles": {
+      "ARM": 9,
+      "BACK": 7,
+      "LEG": 0,
+      "CHEST": 8,
+      "ABS": 4
+    },
+    "Tutorial": "https://www.youtube.com/watch?v=IODxDxX7oi4"
+  },
+
+  {
+    "Name": "Pull Up",
+    "Stages": {
+      "EASY": -1,
+      "MEDIUM": 5,
+      "INTENSE": 10,
+      "HARD": 18
+    },
+    "Muscles": {
+      "ARM": 9,
+      "BACK": 8,
+      "LEG": 0,
+      "CHEST": 0,
+      "ABS": 4
+    },
+    "Tutorial": "https://www.youtube.com/watch?v=eGo4IYlbE5g"
+  },
+
+  {
+    "Name": "L-Sit",
+    "Stages": {
+      "EASY": 3,
+      "MEDIUM": 8,
+      "INTENSE": 16,
+      "HARD": 28
+    },
+    "Muscles": {
+      "ARM": 5,
+      "BACK": 2,
+      "LEG": 4,
+      "CHEST": 3,
+      "ABS": 9
+    },
+    "Tutorial": "https://youtu.be/nusni3Mawr8?t=3"
+  },
+
+  {
+    "Name": "Sit Up",
+    "Stages": {
+      "EASY": 10,
+      "MEDIUM": 20,
+      "INTENSE": 35,
+      "HARD": 50
+    },
+    "Muscles": {
+      "ARM": 0,
+      "BACK": 1,
+      "LEG": 0,
+      "CHEST": 0,
+      "ABS": 10
+    },
+    "Tutorial": "https://youtu.be/1fbU_MkV7NE?t=17"
+  },
+
+  {
+    "Name": "Leg raises",
+    "Stages": {
+      "EASY": 5,
+      "MEDIUM": 12,
+      "INTENSE": 20,
+      "HARD": 30
+    },
+    "Muscles": {
+      "ARM": 0,
+      "BACK": 1,
+      "LEG": 7,
+      "CHEST": 0,
+      "ABS": 9
+    },
+    "Tutorial": "https://youtu.be/l4kQd9eWclE?t=38"
+  },
+
+  {
+    "Name": "Low Squats",
+    "Stages": {
+      "EASY": 15,
+      "MEDIUM": 30,
+      "INTENSE": 45,
+      "HARD": 60
+    },
+    "Muscles": {
+      "ARM": 0,
+      "BACK": 1,
+      "LEG": 9,
+      "CHEST": 0,
+      "ABS": 1
+    },
+    "Tutorial": "https://youtu.be/_E6WzPnYxxc?t=22"
+  },
+
+  {
+    "Name": "Jumping Squats",
+    "Stages": {
+      "EASY": 10,
+      "MEDIUM": 20,
+      "INTENSE": 30,
+      "HARD": 40
+    },
+    "Muscles": {
+      "ARM": 0,
+      "BACK": 0,
+      "LEG": 10,
+      "CHEST": 0,
+      "ABS": 0
+    },
+    "Tutorial": "https://www.youtube.com/watch?v=wrshXD7e0iw"
+  }
+]

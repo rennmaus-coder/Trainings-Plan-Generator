@@ -1,0 +1,34 @@
+﻿<Window x:Class="Trainings_plan_Generator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Trainings_plan_Generator"
+        mc:Ignorable="d"
+        Title="Trainings Plan Generator" Height="450" Width="800">
+    <Grid>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="130,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" RenderTransformOrigin="0.477,0.429" FontSize="16" FontWeight="Bold" Name="name"/>
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="10,15,0,0" TextWrapping="Wrap" Text="Trainings Plan Name:" VerticalAlignment="Top" Width="130"/>
+        <ComboBox HorizontalAlignment="Left" Height="25" Margin="80,85,0,0" VerticalAlignment="Top" Width="125" SelectedIndex="0" x:Name="diff">
+            <ComboBoxItem>easy</ComboBoxItem>
+            <ComboBoxItem>medium</ComboBoxItem>
+            <ComboBoxItem>intense</ComboBoxItem>
+            <ComboBoxItem>hard</ComboBoxItem>
+        </ComboBox>
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="10,90,0,0" TextWrapping="Wrap" Text="Difficulty:" VerticalAlignment="Top" Width="100"/>
+        <TextBox HorizontalAlignment="Left" Height="20" Margin="320,90,0,0" VerticalAlignment="Top" Width="125" InputMethod.InputScope="Number" Name="length"/>
+
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="235,90,0,0" TextWrapping="Wrap" Text="Length (Days):" VerticalAlignment="Top" Width="100"/>
+        <TextBox HorizontalAlignment="Left" Height="20" Margin="640,90,0,0" VerticalAlignment="Top" Width="125" InputMethod.InputScope="Number" Name="training"/>
+
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="495,90,0,0" TextWrapping="Wrap" Text="Training Length (Minutes):" VerticalAlignment="Top" Width="140"/>
+
+        <CheckBox Content="Arms" HorizontalAlignment="Left" Height="15" Margin="25,160,0,0" VerticalAlignment="Top" Width="85" Name="arms"/>
+        <CheckBox Content="Chest" HorizontalAlignment="Left" Height="15" Margin="25,180,0,0" VerticalAlignment="Top" Width="85" RenderTransformOrigin="0.353,0.667" x:Name="chest"/>
+        <CheckBox Content="Back" HorizontalAlignment="Left" Height="15" Margin="25,200,0,0" VerticalAlignment="Top" Width="85" Name="back"/>
+        <CheckBox Content="ABS" HorizontalAlignment="Left" Height="15" Margin="25,220,0,0" VerticalAlignment="Top" Width="85" RenderTransformOrigin="0.471,0.667" x:Name="abs"/>
+        <CheckBox Content="Legs" HorizontalAlignment="Left" Height="15" Margin="25,240,0,0" VerticalAlignment="Top" Width="85" Name="leg"/>
+        <TextBlock HorizontalAlignment="Left" Height="169" Margin="95,250,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="350" Name="feedback"/>
+        <Button Content="Generate" HorizontalAlignment="Left" Height="65" Margin="545,325,0,0" VerticalAlignment="Top" Width="220" Click="generate"/>
+    </Grid>
+</Window>
