@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Exercise.cs" />
     <Compile Include="Work.cs" />
     <Compile Include="WorkDay.cs" />
     <Page Include="MainWindow.xaml">

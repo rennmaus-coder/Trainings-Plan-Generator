@@ -103,35 +103,62 @@ namespace Trainings_plan_Generator
             }
             if (arms.IsChecked.Value)
             {
-                selected.Add("ARMS");
+                selected.Add("ARM");
             }
 
             List<Work> chosen = new List<Work>();
 
+            StringBuilder sr = new StringBuilder();
+
             foreach (Work work in works)
             {
-                IOrderedEnumerable<DictionaryEntry> sorted = work.Muscles.Cast<DictionaryEntry>().OrderBy(entry => entry.Value);
-                Hashtable sort = (Hashtable)sorted.Cast<Hashtable>();
-                ArrayList muscles = ToList(sort.Keys);
-                List<string> temp = new List<string>();
-                if (selected.Contains(muscles[0]))
+
+                List<KeyValuePair<string, int>> muscles = HashtableToKeyValue(work.Muscles);
+
+                sr.AppendLine(selected[0] + " " + selected[1]);
+                bool added = false;
+                if (selected.Contains(muscles[0].Key))
                 {
-                    temp.Add(muscles[0].ToString());
+                    if (muscles[0].Value > 6)
+                    {
+                        chosen.Add(work);
+                        added = true;
+                    }
                 }
-                if (selected.Contains(muscles[1]))
+                if (selected.Contains(muscles[1].Key) && !added)
                 {
-                    temp.Add(muscles[1].ToString());
+                    if (muscles[1].Value > 6)
+                    {
+                        chosen.Add(work);
+                        added = true;
+                    }
                 }
-                if (temp.Contains(muscles[0]))
+                if (selected.Contains(muscles[2].Key) && !added)
                 {
-                    chosen.Add(work);
+                    if (muscles[2].Value > 6)
+                    {
+                        chosen.Add(work);
+                        added = true;
+                    }
+                }
+                if (selected.Contains(muscles[3].Key) && !added)
+                {
+                    if (muscles[3].Value > 6)
+                    {
+                        chosen.Add(work);
+                    }
                 }
             }
 
-            if (diff.SelectedItem.ToString() == "easy")
+            sr.Clear();
+
+            Random rand = new Random(345);
+
+            if (diff.Text == "easy")
             {
-                for (int day = 0; day < Convert.ToInt32(length.Text); day++)
+                for (int day = 0; day <= Convert.ToInt32(length.Text); day++)
                 {
+                    sr.AppendLine("tag: " + day.ToString());
                     if (day % 2 == 1)
                     {
                         WorkDay workDay = new WorkDay(false);
@@ -139,13 +166,60 @@ namespace Trainings_plan_Generator
                     }
                     else
                     {
-                        Random rand = new Random();
-                        Work work = works[rand.Next(0, works.Count - 1)];
-                        WorkDay workDay = new WorkDay(true);
+                        List<Exercise> ex = new List<Exercise>();
+
+                        for (int i = 0; i <= Convert.ToInt32(training.Text); i += 2)
+                        {
+                            sr.AppendLine("Minute :" + i.ToString());
+                            if (i % 8 == 0)
+                            {
+                                ex.Add(new Exercise(true, 120));
+                                continue;
+                            }
+
+                            int index = rand.Next(0, chosen.Count);
+                            Work work = chosen[index];
+
+
+                            int reps = Convert.ToInt32(work.Stages["EASY"]) + rand.Next(-3, 5);
+
+                            if (reps <= 0)
+                            {
+                                reps = 1;
+                            }
+
+                            ex.Add(new Exercise(work.Name, reps, false, 30, work.Tutorial));
+                        }
+
+                        res.Add(new WorkDay(ex, true));
+                        
                     }
                 }
             }
-            return null;
+
+            int counter = 0;
+
+            foreach (WorkDay wd in res)
+            {
+                counter++;
+                sr.AppendLine("Days Counter: " + counter);
+                if (!wd.train)
+                {
+                    continue;
+                }
+                foreach (Exercise ex in wd.work)
+                {
+                    if (ex.Pause)
+                    {
+                        sr.AppendLine($"Pause ({ex.Duration})");
+                        continue;
+                    }
+                    sr.AppendLine(ex.Name + "         " + ex.Reps);
+                }
+            }
+            
+            File.WriteAllText("C:/Users/chris/Desktop/log.txt", sr.ToString());
+            return res;
         }
 
         private void generate(object sender, RoutedEventArgs e)
@@ -157,6 +231,7 @@ namespace Trainings_plan_Generator
 
             string file = File.ReadAllText("./Resources/ExercisesConfig.json");
             List<Work> works = JsonConvert.DeserializeObject<List<Work>>(file);
+            List<WorkDay> days = getRandomWork(works);
         }
 
         private ArrayList ToList(ICollection coll)
@@ -167,6 +242,28 @@ namespace Trainings_plan_Generator
                 list.Add(item);
             }
             return list;
+        }
+
+        private List<KeyValuePair<string, int>> HashtableToKeyValue(Hashtable table)
+        {
+            List<string> keys = new List<string>();
+            List<int> vals = new List<int>();
+            List<KeyValuePair<string, int>> res = new List<KeyValuePair<string, int>>();
+            
+            foreach (string k in table.Keys)
+            {
+                keys.Add(k);
+            }
+            foreach (Int64 k in table.Values)
+            {
+                vals.Add(Convert.ToUInt16(k));
+            }
+            
+            for (int i = 0; i < keys.Count; i++)
+            {
+                res.Add(new KeyValuePair<string, int>(keys[i], vals[i]));
+            }
+            return res;
         }
     }
 }

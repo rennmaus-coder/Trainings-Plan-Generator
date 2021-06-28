@@ -9,12 +9,12 @@ namespace Trainings_plan_Generator
     class WorkDay
     {
         public bool train { get; set; }
-        public Work work { get; set; }
+        public List<Exercise> work { get; set; }
         public WorkDay(bool training)
         {
             train = training;
         }
-        public WorkDay(Work work, bool training)
+        public WorkDay(List<Exercise> work, bool training)
         {
             train = training;
             this.work = work;

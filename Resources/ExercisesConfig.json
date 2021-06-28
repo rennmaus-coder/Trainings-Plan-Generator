@@ -18,9 +18,63 @@
   },
 
   {
+    "Name": "Diamond Push Up",
+    "Stages": {
+      "EASY": 5,
+      "MEDIUM": 15,
+      "INTENSE": 30,
+      "HARD": 40
+    },
+    "Muscles": {
+      "ARM": 9,
+      "BACK": 5,
+      "LEG": 0,
+      "CHEST": 6,
+      "ABS": 2
+    },
+    "Tutorial": "https://youtu.be/J0DnG1_S92I?t=48"
+  },
+
+  {
+    "Name": "Wide Push Up",
+    "Stages": {
+      "EASY": 5,
+      "MEDIUM": 20,
+      "INTENSE": 35,
+      "HARD": 45
+    },
+    "Muscles": {
+      "ARM": 7,
+      "BACK": 5,
+      "LEG": 0,
+      "CHEST": 8,
+      "ABS": 2
+    },
+    "Tutorial": "https://youtu.be/rr6eFNNDQdU?t=36"
+  },
+
+  {
+    "Name": "Clap Push Up",
+    "Stages": {
+      "EASY": 1,
+      "MEDIUM": 10,
+      "INTENSE": 20,
+      "HARD": 30
+    },
+    "Muscles": {
+      "ARM": 8,
+      "BACK": 7,
+      "LEG": 0,
+      "CHEST": 8,
+      "ABS": 3
+    },
+    "Tutorial": "https://youtu.be/EYwWCgM198U?t=16"
+  },
+
+  {
     "Name": "Pull Up",
     "Stages": {
-      "EASY": -1,
+      "EASY": 2,
       "MEDIUM": 5,
       "INTENSE": 10,
       "HARD": 18
@@ -33,6 +87,114 @@
       "ABS": 4
     },
     "Tutorial": "https://www.youtube.com/watch?v=eGo4IYlbE5g"
+  },
+
+  {
+    "Name": "Chin Up",
+    "Stages": {
+      "EASY": 2,
+      "MEDIUM": 6,
+      "INTENSE": 10,
+      "HARD": 18
+    },
+    "Muscles": {
+      "ARM": 9,
+      "BACK": 5,
+      "LEG": 0,
+      "CHEST": 0,
+      "ABS": 5
+    },
+    "Tutorial": "https://youtu.be/a8pXeeX2xOU?t=56"
+  },
+
+  {
+    "Name": "Wide Pull Up",
+    "Stages": {
+      "EASY": 2,
+      "MEDIUM": 6,
+      "INTENSE": 10,
+      "HARD": 18
+    },
+    "Muscles": {
+      "ARM": 8,
+      "BACK": 8,
+      "LEG": 0,
+      "CHEST": 0,
+      "ABS": 5
+    },
+    "Tutorial": "https://youtu.be/__Qwi6rjATE?t=293"
+  },
+
+  {
+    "Name": "Narrow Pull Up",
+    "Stages": {
+      "EASY": 2,
+      "MEDIUM": 6,
+      "INTENSE": 10,
+      "HARD": 18
+    },
+    "Muscles": {
+      "ARM": 9,
+      "BACK": 6,
+      "LEG": 0,
+      "CHEST": 0,
+      "ABS": 5
+    },
+    "Tutorial": "https://youtu.be/__Qwi6rjATE?t=300"
+  },
+
+  {
+    "Name": "Commando Pull Up",
+    "Stages": {
+      "EASY": 3,
+      "MEDIUM": 7,
+      "INTENSE": 12,
+      "HARD": 20
+    },
+    "Muscles": {
+      "ARM": 9,
+      "BACK": 7,
+      "LEG": 0,
+      "CHEST": 0,
+      "ABS": 5
+    },
+    "Tutorial": "https://youtu.be/__Qwi6rjATE?t=226"
+  },
+
+  {
+    "Name": "Australian Pull Up",
+    "Stages": {
+      "EASY": 6,
+      "MEDIUM": 20,
+      "INTENSE": 30,
+      "HARD": 40
+    },
+    "Muscles": {
+      "ARM": 9,
+      "BACK": 6,
+      "LEG": 0,
+      "CHEST": 0,
+      "ABS": 5
+    },
+    "Tutorial": "https://youtu.be/__Qwi6rjATE?t=226"
+  },
+
+  {
+    "Name": "Archer Push Up",
+    "Stages": {
+      "EASY": 0,
+      "MEDIUM": 4,
+      "INTENSE": 10,
+      "HARD": 18
+    },
+    "Muscles": {
+      "ARM": 9,
+      "BACK": 7,
+      "LEG": 0,
+      "CHEST": 0,
+      "ABS": 5
+    },
+    "Tutorial": "https://youtu.be/1DxWY0nLEF0?t=246"
   },
 
   {
