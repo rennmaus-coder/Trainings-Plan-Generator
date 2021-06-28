@@ -168,17 +168,23 @@ namespace Trainings_plan_Generator
                     {
                         List<Exercise> ex = new List<Exercise>();
 
-                        for (int i = 0; i <= Convert.ToInt32(training.Text); i += 2)
+                        for (int i = 0; i <= Convert.ToInt32(training.Text); i += 1)
                         {
                             sr.AppendLine("Minute :" + i.ToString());
-                            if (i % 8 == 0)
+                            if (i % 4 == 0)
                             {
-                                ex.Add(new Exercise(true, 120));
+                                ex.Add(new Exercise(true, 60));
                                 continue;
                             }
 
                             int index = rand.Next(0, chosen.Count);
                             Work work = chosen[index];
+
+                            if (work.Seconds)
+                            {
+                                ex.Add(new Exercise(work.Name, false, 30, work.Tutorial));
+                                continue;
+                            }
 
 
                             int reps = Convert.ToInt32(work.Stages["EASY"]) + rand.Next(-3, 5);
@@ -197,28 +203,6 @@ namespace Trainings_plan_Generator
                 }
             }
 
-            int counter = 0;
-
-            foreach (WorkDay wd in res)
-            {
-                counter++;
-                sr.AppendLine("Days Counter: " + counter);
-                if (!wd.train)
-                {
-                    continue;
-                }
-                foreach (Exercise ex in wd.work)
-                {
-                    if (ex.Pause)
-                    {
-                        sr.AppendLine($"Pause ({ex.Duration})");
-                        continue;
-                    }
-                    sr.AppendLine(ex.Name + "         " + ex.Reps);
-                }
-            }
-            
-            File.WriteAllText("C:/Users/chris/Desktop/log.txt", sr.ToString());
             return res;
         }
 
@@ -264,6 +248,45 @@ namespace Trainings_plan_Generator
                 res.Add(new KeyValuePair<string, int>(keys[i], vals[i]));
             }
             return res;
+        }
+
+        private string createHTML(List<WorkDay> days)
+        {
+            string BEGIN = "<!DOCTYPE html>" +
+                        "<html>" +
+                        "  <head>" +
+                        "    <meta charset='utf-8'/>" +
+                        "    <title>" + name.Text + "</title>" +
+                        "  </head>" +
+                        "  <body>" +
+                        "  <h1 align=center>" + name.Text + "</h1><br>" +
+                        "  <ul>";
+
+            string END = " </ul>" +
+                      " </body>" +
+                      "</html>";
+
+            StringBuilder content = new StringBuilder();
+            foreach (WorkDay day in days)
+            {
+                if (!day.train)
+                {
+                    content.AppendLine("<br><li>Rest Day</li><br>");
+                    continue;
+                }
+                foreach (Exercise work in day.work)
+                {
+                    if (work.Pause)
+                    {
+                        content.AppendLine("<li>Pause (60s)</li>");
+                        continue;
+                    }
+                    if (work.Reps != 0)
+                    {
+
+                    }
+                }
+            }
         }
     }
 }

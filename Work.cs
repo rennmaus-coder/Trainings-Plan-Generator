@@ -13,5 +13,6 @@ namespace Trainings_plan_Generator
         public Hashtable Stages { get; set; }
         public Hashtable Muscles { get; set; }
         public string Tutorial { get; set; }
+        public bool Seconds { get; set; }
     }
 }

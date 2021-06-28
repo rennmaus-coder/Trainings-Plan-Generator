@@ -14,6 +14,7 @@
       "CHEST": 8,
       "ABS": 4
     },
+    "Seconds": false,
     "Tutorial": "https://www.youtube.com/watch?v=IODxDxX7oi4"
   },
 
@@ -32,6 +33,7 @@
       "CHEST": 6,
       "ABS": 2
     },
+    "Seconds": false,
     "Tutorial": "https://youtu.be/J0DnG1_S92I?t=48"
   },
 
@@ -50,6 +52,7 @@
       "CHEST": 8,
       "ABS": 2
     },
+    "Seconds": false,
     "Tutorial": "https://youtu.be/rr6eFNNDQdU?t=36"
   },
 
@@ -68,6 +71,7 @@
       "CHEST": 8,
       "ABS": 3
     },
+    "Seconds": false,
     "Tutorial": "https://youtu.be/EYwWCgM198U?t=16"
   },
 
@@ -86,6 +90,7 @@
       "CHEST": 0,
       "ABS": 4
     },
+    "Seconds": false,
     "Tutorial": "https://www.youtube.com/watch?v=eGo4IYlbE5g"
   },
 
@@ -104,6 +109,7 @@
       "CHEST": 0,
       "ABS": 5
     },
+    "Seconds": false,
     "Tutorial": "https://youtu.be/a8pXeeX2xOU?t=56"
   },
 
@@ -122,6 +128,7 @@
       "CHEST": 0,
       "ABS": 5
     },
+    "Seconds": false,
     "Tutorial": "https://youtu.be/__Qwi6rjATE?t=293"
   },
 
@@ -140,6 +147,7 @@
       "CHEST": 0,
       "ABS": 5
     },
+    "Seconds": false,
     "Tutorial": "https://youtu.be/__Qwi6rjATE?t=300"
   },
 
@@ -158,6 +166,7 @@
       "CHEST": 0,
       "ABS": 5
     },
+    "Seconds": false,
     "Tutorial": "https://youtu.be/__Qwi6rjATE?t=226"
   },
 
@@ -176,6 +185,7 @@
       "CHEST": 0,
       "ABS": 5
     },
+    "Seconds": false,
     "Tutorial": "https://youtu.be/__Qwi6rjATE?t=226"
   },
 
@@ -194,7 +204,65 @@
       "CHEST": 0,
       "ABS": 5
     },
+    "Seconds": false,
     "Tutorial": "https://youtu.be/1DxWY0nLEF0?t=246"
+  },
+
+  {
+    "Name": "Bench Dips",
+    "Stages": {
+      "EASY": 5,
+      "MEDIUM": 10,
+      "INTENSE": 20,
+      "HARD": 30
+    },
+    "Muscles": {
+      "ARM": 7,
+      "BACK": 7,
+      "LEG": 0,
+      "CHEST": 7,
+      "ABS": 3
+    },
+    "Seconds": false,
+    "Tutorial": "https://youtu.be/jdFzYGmvDyg?t=205"
+  },
+
+  {
+    "Name": "Russian Twists",
+    "Stages": {
+      "EASY": 20,
+      "MEDIUM": 35,
+      "INTENSE": 50,
+      "HARD": 70
+    },
+    "Muscles": {
+      "ARM": 0,
+      "BACK": 0,
+      "LEG": 2,
+      "CHEST": 0,
+      "ABS": 10
+    },
+    "Seconds": true,
+    "Tutorial": "https://youtu.be/3p8EBPVZ2Iw?t=162"
+  },
+
+  {
+    "Name": "Plank knees to Elbow",
+    "Stages": {
+      "EASY": 15,
+      "MEDIUM": 30,
+      "INTENSE": 45,
+      "HARD": 50
+    },
+    "Muscles": {
+      "ARM": 4,
+      "BACK": 3,
+      "LEG": 0,
+      "CHEST": 0,
+      "ABS": 10
+    },
+    "Seconds": true,
+    "Tutorial": "https://youtu.be/3p8EBPVZ2Iw?t=391"
   },
 
   {
@@ -212,6 +280,7 @@
       "CHEST": 3,
       "ABS": 9
     },
+    "Seconds": true,
     "Tutorial": "https://youtu.be/nusni3Mawr8?t=3"
   },
 
@@ -230,6 +299,7 @@
       "CHEST": 0,
       "ABS": 10
     },
+    "Seconds": false,
     "Tutorial": "https://youtu.be/1fbU_MkV7NE?t=17"
   },
 
@@ -248,6 +318,7 @@
       "CHEST": 0,
       "ABS": 9
     },
+    "Seconds": false,
     "Tutorial": "https://youtu.be/l4kQd9eWclE?t=38"
   },
 
@@ -266,6 +337,7 @@
       "CHEST": 0,
       "ABS": 1
     },
+    "Seconds": false,
     "Tutorial": "https://youtu.be/_E6WzPnYxxc?t=22"
   },
 
@@ -284,6 +356,7 @@
       "CHEST": 0,
       "ABS": 0
     },
+    "Seconds": false,
     "Tutorial": "https://www.youtube.com/watch?v=wrshXD7e0iw"
   }
 ]
