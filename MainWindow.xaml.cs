@@ -15,7 +15,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
-using Trainings_plan_Generator;
 
 namespace Trainings_plan_Generator
 {
@@ -89,18 +88,10 @@ namespace Trainings_plan_Generator
 
             string file = File.ReadAllText("./Resources/ExercisesConfig.json");
             List<Work> works = JsonConvert.DeserializeObject<List<Work>>(file);
-            Random_Work randomWork = new Random_Work();
-            List<WorkDay> days = randomWork.getRandomWork(works);
-        }
-
-        private ArrayList ToList(ICollection coll)
-        {
-            ArrayList list = new ArrayList();
-            foreach (var item in coll)
-            {
-                list.Add(item);
-            }
-            return list;
+            List<WorkDay> days = getRandomWork(works);
+            string html = createHTML(days);
+            File.WriteAllText("C:/Users/chris/Desktop/h.html", html);
+            feedback.Text = "Sucessfully created Trainings Plan!";
         }
 
         private string createHTML(List<WorkDay> days)
@@ -120,8 +111,11 @@ namespace Trainings_plan_Generator
                       "</html>";
 
             StringBuilder content = new StringBuilder();
+            content.Append(BEGIN);
+            int counter = 1;
             foreach (WorkDay day in days)
             {
+                content.AppendLine("</ul><br><h2>Tag " + counter + "</h2><ul>");
                 if (!day.train)
                 {
                     content.AppendLine("<br><li>Rest Day</li><br>");
@@ -136,11 +130,291 @@ namespace Trainings_plan_Generator
                     }
                     if (work.Reps != 0)
                     {
+                        content.AppendLine("<li><a href='" + work.Tutorial + "'>Übung: " + work.Name + ", Reps: " + work.Reps + " + Pause (30sek) </a>");
+                    }
+                    if (work.Reps == 0)
+                    {
+                        content.AppendLine("<li><a href='" + work.Tutorial + "'>Übung: " + work.Name + ", 30sek + Pause (30sek)</a>");
+                    }
+                }
+                counter++;
+            }
+            content.Append(END);
+            return content.ToString();
+        }
+
+        private List<WorkDay> getRandomWork(List<Work> works)
+        {
+
+            List<WorkDay> res = new List<WorkDay>();
+
+            ArrayList selected = new ArrayList();
+            if (abs.IsChecked.Value)
+            {
+                selected.Add("ABS");
+            }
+            if (chest.IsChecked.Value)
+            {
+                selected.Add("CHEST");
+            }
+            if (back.IsChecked.Value)
+            {
+                selected.Add("BACK");
+            }
+            if (leg.IsChecked.Value)
+            {
+                selected.Add("LEG");
+            }
+            if (arms.IsChecked.Value)
+            {
+                selected.Add("ARM");
+            }
+
+            List<Work> chosen = new List<Work>();
+
+            foreach (Work work in works)
+            {
+
+                List<KeyValuePair<string, int>> muscles = HashtableToKeyValue(work.Muscles);
+
+                bool added = false;
+                if (selected.Contains(muscles[0].Key))
+                {
+                    if (muscles[0].Value > 6)
+                    {
+                        chosen.Add(work);
+                        added = true;
+                    }
+                }
+                if (selected.Contains(muscles[1].Key) && !added)
+                {
+                    if (muscles[1].Value > 6)
+                    {
+                        chosen.Add(work);
+                        added = true;
+                    }
+                }
+                if (selected.Contains(muscles[2].Key) && !added)
+                {
+                    if (muscles[2].Value > 6)
+                    {
+                        chosen.Add(work);
+                        added = true;
+                    }
+                }
+                if (selected.Contains(muscles[3].Key) && !added)
+                {
+                    if (muscles[3].Value > 6)
+                    {
+                        chosen.Add(work);
+                    }
+                }
+            }
+
+
+            Random rand = new Random();
+
+            if (diff.Text == "easy")
+            {
+                for (int day = 0; day <= Convert.ToInt32(length.Text); day++)
+                {
+                    if (day % 2 == 1)
+                    {
+                        WorkDay workDay = new WorkDay(false);
+                        res.Add(workDay);
+                    }
+                    else
+                    {
+                        List<Exercise> ex = new List<Exercise>();
+
+                        for (int i = 0; i <= Convert.ToInt32(training.Text); i += 1)
+                        {
+                            if (i % 4 == 0)
+                            {
+                                ex.Add(new Exercise(true, 60));
+                                continue;
+                            }
+
+                            int index = rand.Next(0, chosen.Count);
+                            Work work = chosen[index];
+
+                            if (work.Seconds)
+                            {
+                                ex.Add(new Exercise(work.Name, false, 30, work.Tutorial));
+                                continue;
+                            }
+
+
+                            int reps = Convert.ToInt32(work.Stages["EASY"]) + rand.Next(-3, 5);
+
+                            if (reps <= 0)
+                            {
+                                reps = 1;
+                            }
+
+                            ex.Add(new Exercise(work.Name, reps, false, 30, work.Tutorial));
+                        }
+
+                        res.Add(new WorkDay(ex, true));
 
                     }
                 }
             }
-            return content.ToString();
+
+            else if (diff.Text == "medium")
+            {
+                for (int day = 0; day <= Convert.ToInt32(length.Text); day++)
+                {
+                    if (day % 2 == 1)
+                    {
+                        WorkDay workDay = new WorkDay(false);
+                        res.Add(workDay);
+                    }
+                    else
+                    {
+                        List<Exercise> ex = new List<Exercise>();
+
+                        for (int i = 0; i <= Convert.ToInt32(training.Text); i += 1)
+                        {
+                            if (i % 4 == 0)
+                            {
+                                ex.Add(new Exercise(true, 60));
+                                continue;
+                            }
+
+                            int index = rand.Next(0, chosen.Count);
+                            Work work = chosen[index];
+
+                            if (work.Seconds)
+                            {
+                                ex.Add(new Exercise(work.Name, false, 30, work.Tutorial));
+                                continue;
+                            }
+
+
+                            int reps = Convert.ToInt32(work.Stages["MEDIUM"]) + rand.Next(-3, 5);
+
+                            if (reps <= 0)
+                            {
+                                reps = 1;
+                            }
+
+                            ex.Add(new Exercise(work.Name, reps, false, 30, work.Tutorial));
+                        }
+                    }
+                }
+            }
+
+            else if (diff.Text == "intense")
+            {
+                for (int day = 0; day <= Convert.ToInt32(length.Text); day++)
+                {
+                    if (day % 2 == 1)
+                    {
+                        WorkDay workDay = new WorkDay(false);
+                        res.Add(workDay);
+                    }
+                    else
+                    {
+                        List<Exercise> ex = new List<Exercise>();
+
+                        for (int i = 0; i <= Convert.ToInt32(training.Text); i += 1)
+                        {
+                            if (i % 4 == 0)
+                            {
+                                ex.Add(new Exercise(true, 60));
+                                continue;
+                            }
+
+                            int index = rand.Next(0, chosen.Count);
+                            Work work = chosen[index];
+
+                            if (work.Seconds)
+                            {
+                                ex.Add(new Exercise(work.Name, false, 30, work.Tutorial));
+                                continue;
+                            }
+
+
+                            int reps = Convert.ToInt32(work.Stages["INTENSE"]) + rand.Next(-3, 5);
+
+                            if (reps <= 0)
+                            {
+                                reps = 1;
+                            }
+
+                            ex.Add(new Exercise(work.Name, reps, false, 30, work.Tutorial));
+                        }
+                    }
+                }
+            }
+
+            else if (diff.Text == "hard")
+            {
+                for (int day = 0; day <= Convert.ToInt32(length.Text); day++)
+                {
+                    if (day % 2 == 1)
+                    {
+                        WorkDay workDay = new WorkDay(false);
+                        res.Add(workDay);
+                    }
+                    else
+                    {
+                        List<Exercise> ex = new List<Exercise>();
+
+                        for (int i = 0; i <= Convert.ToInt32(training.Text); i += 1)
+                        {
+                            if (i % 4 == 0)
+                            {
+                                ex.Add(new Exercise(true, 60));
+                                continue;
+                            }
+
+                            int index = rand.Next(0, chosen.Count);
+                            Work work = chosen[index];
+
+                            if (work.Seconds)
+                            {
+                                ex.Add(new Exercise(work.Name, false, 30, work.Tutorial));
+                                continue;
+                            }
+
+
+                            int reps = Convert.ToInt32(work.Stages["HARD"]) + rand.Next(-3, 5);
+
+                            if (reps <= 0)
+                            {
+                                reps = 1;
+                            }
+
+                            ex.Add(new Exercise(work.Name, reps, false, 30, work.Tutorial));
+                        }
+                    }
+                }
+            }
+            return res;
+        }
+
+        private List<KeyValuePair<string, int>> HashtableToKeyValue(Hashtable table)
+        {
+            List<string> keys = new List<string>();
+            List<int> vals = new List<int>();
+            List<KeyValuePair<string, int>> res = new List<KeyValuePair<string, int>>();
+
+            foreach (string k in table.Keys)
+            {
+                keys.Add(k);
+            }
+            foreach (Int64 k in table.Values)
+            {
+                vals.Add(Convert.ToUInt16(k));
+            }
+
+            for (int i = 0; i < keys.Count; i++)
+            {
+                res.Add(new KeyValuePair<string, int>(keys[i], vals[i]));
+            }
+            return res;
         }
     }
 }
