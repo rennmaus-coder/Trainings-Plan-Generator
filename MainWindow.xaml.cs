@@ -90,8 +90,23 @@ namespace Trainings_plan_Generator
             List<Work> works = JsonConvert.DeserializeObject<List<Work>>(file);
             List<WorkDay> days = getRandomWork(works);
             string html = createHTML(days);
-            File.WriteAllText("C:/Users/chris/Desktop/h.html", html);
-            feedback.Text = "Sucessfully created Trainings Plan!";
+            Microsoft.Win32.SaveFileDialog dialog = new Microsoft.Win32.SaveFileDialog();
+            dialog.FileName = name.Text;
+            dialog.DefaultExt = ".html";
+            dialog.Filter = "Html Document | *.html";
+
+            Nullable<bool> result = dialog.ShowDialog();
+
+            if (result == true)
+            {
+                string filename = dialog.FileName;
+                File.WriteAllText(filename, html);
+                feedback.Text = "Sucessfully created Trainings Plan!";
+
+            } else
+            {
+                feedback.Text = "Couldn't create Trainings Plan, please try again!";
+            }
         }
 
         private string createHTML(List<WorkDay> days)
@@ -107,6 +122,14 @@ namespace Trainings_plan_Generator
                         "  <ul>";
 
             string END = " </ul>" +
+                      "  <style>" +
+                      "    body {" +
+                      "      font-family: \"Segoe UI\"," +
+                      "    }" +
+                      "    li {" +
+                      "     margin: 10px 10px 10px 10px" +
+                      "    }" +
+                      "  </style>" +
                       " </body>" +
                       "</html>";
 
@@ -116,6 +139,7 @@ namespace Trainings_plan_Generator
             foreach (WorkDay day in days)
             {
                 content.AppendLine("</ul><br><h2>Tag " + counter + "</h2><ul>");
+                counter++;
                 if (!day.train)
                 {
                     content.AppendLine("<br><li>Rest Day</li><br>");
@@ -130,14 +154,13 @@ namespace Trainings_plan_Generator
                     }
                     if (work.Reps != 0)
                     {
-                        content.AppendLine("<li><a href='" + work.Tutorial + "'>Übung: " + work.Name + ", Reps: " + work.Reps + " + Pause (30sek) </a>");
+                        content.AppendLine("<li><a href='" + work.Tutorial + "'>Übung: " + work.Name + ",\t Reps: " + work.Reps + "  +  Pause (30sek) </a>");
                     }
                     if (work.Reps == 0)
                     {
-                        content.AppendLine("<li><a href='" + work.Tutorial + "'>Übung: " + work.Name + ", 30sek + Pause (30sek)</a>");
+                        content.AppendLine("<li><a href='" + work.Tutorial + "'>Übung: " + work.Name + ",\t 30sek  +  Pause (30sek)</a>");
                     }
                 }
-                counter++;
             }
             content.Append(END);
             return content.ToString();
@@ -229,7 +252,7 @@ namespace Trainings_plan_Generator
 
                         for (int i = 0; i <= Convert.ToInt32(training.Text); i += 1)
                         {
-                            if (i % 4 == 0)
+                            if (i % 4 == 0 && i != 0)
                             {
                                 ex.Add(new Exercise(true, 60));
                                 continue;
@@ -238,7 +261,7 @@ namespace Trainings_plan_Generator
                             int index = rand.Next(0, chosen.Count);
                             Work work = chosen[index];
 
-                            if (work.Seconds)
+                            if (work.Seconds || time.Text == "Use only Seconds")
                             {
                                 ex.Add(new Exercise(work.Name, false, 30, work.Tutorial));
                                 continue;
@@ -276,7 +299,7 @@ namespace Trainings_plan_Generator
 
                         for (int i = 0; i <= Convert.ToInt32(training.Text); i += 1)
                         {
-                            if (i % 4 == 0)
+                            if (i % 4 == 0 && i != 0)
                             {
                                 ex.Add(new Exercise(true, 60));
                                 continue;
@@ -285,7 +308,7 @@ namespace Trainings_plan_Generator
                             int index = rand.Next(0, chosen.Count);
                             Work work = chosen[index];
 
-                            if (work.Seconds)
+                            if (work.Seconds || time.Text == "Use only Seconds")
                             {
                                 ex.Add(new Exercise(work.Name, false, 30, work.Tutorial));
                                 continue;
@@ -301,6 +324,9 @@ namespace Trainings_plan_Generator
 
                             ex.Add(new Exercise(work.Name, reps, false, 30, work.Tutorial));
                         }
+
+                        res.Add(new WorkDay(ex, true));
+
                     }
                 }
             }
@@ -320,7 +346,7 @@ namespace Trainings_plan_Generator
 
                         for (int i = 0; i <= Convert.ToInt32(training.Text); i += 1)
                         {
-                            if (i % 4 == 0)
+                            if (i % 4 == 0 && i != 0)
                             {
                                 ex.Add(new Exercise(true, 60));
                                 continue;
@@ -329,7 +355,7 @@ namespace Trainings_plan_Generator
                             int index = rand.Next(0, chosen.Count);
                             Work work = chosen[index];
 
-                            if (work.Seconds)
+                            if (work.Seconds || time.Text == "Use only Seconds")
                             {
                                 ex.Add(new Exercise(work.Name, false, 30, work.Tutorial));
                                 continue;
@@ -345,11 +371,14 @@ namespace Trainings_plan_Generator
 
                             ex.Add(new Exercise(work.Name, reps, false, 30, work.Tutorial));
                         }
+
+                        res.Add(new WorkDay(ex, true));
+
                     }
                 }
             }
 
-            else if (diff.Text == "hard")
+            if (diff.Text == "hard")
             {
                 for (int day = 0; day <= Convert.ToInt32(length.Text); day++)
                 {
@@ -364,7 +393,7 @@ namespace Trainings_plan_Generator
 
                         for (int i = 0; i <= Convert.ToInt32(training.Text); i += 1)
                         {
-                            if (i % 4 == 0)
+                            if (i % 4 == 0 && i != 0)
                             {
                                 ex.Add(new Exercise(true, 60));
                                 continue;
@@ -373,7 +402,7 @@ namespace Trainings_plan_Generator
                             int index = rand.Next(0, chosen.Count);
                             Work work = chosen[index];
 
-                            if (work.Seconds)
+                            if (work.Seconds || time.Text == "Use only Seconds")
                             {
                                 ex.Add(new Exercise(work.Name, false, 30, work.Tutorial));
                                 continue;
@@ -389,6 +418,9 @@ namespace Trainings_plan_Generator
 
                             ex.Add(new Exercise(work.Name, reps, false, 30, work.Tutorial));
                         }
+
+                        res.Add(new WorkDay(ex, true));
+
                     }
                 }
             }
@@ -415,6 +447,46 @@ namespace Trainings_plan_Generator
                 res.Add(new KeyValuePair<string, int>(keys[i], vals[i]));
             }
             return res;
+        }
+
+
+
+        private void name_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            name.BorderBrush = System.Windows.Media.Brushes.Gray;
+        }
+
+        private void length_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            length.BorderBrush = System.Windows.Media.Brushes.Gray;
+        }
+
+        private void train_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            training.BorderBrush = System.Windows.Media.Brushes.Gray;
+        }
+
+        private void MaskNumericInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !TextIsNumeric(e.Text);
+        }
+
+        private void MaskNumericPaste(object sender, DataObjectPastingEventArgs e)
+        {
+            if (e.DataObject.GetDataPresent(typeof(string)))
+            {
+                string input = (string)e.DataObject.GetData(typeof(string));
+                if (!TextIsNumeric(input)) e.CancelCommand();
+            }
+            else
+            {
+                e.CancelCommand();
+            }
+        }
+
+        private bool TextIsNumeric(string input)
+        {
+            return input.All(c => Char.IsDigit(c) || Char.IsControl(c));
         }
     }
 }

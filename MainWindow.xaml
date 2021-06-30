@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Trainings Plan Generator" Height="450" Width="800">
     <Grid>
-        <TextBox HorizontalAlignment="Left" Height="30" Margin="130,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" RenderTransformOrigin="0.477,0.429" FontSize="16" FontWeight="Bold" Name="name"/>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="130,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" RenderTransformOrigin="0.477,0.429" FontSize="16" FontWeight="Bold" Name="name" TextChanged="name_TextChanged"/>
         <TextBlock HorizontalAlignment="Left" Height="20" Margin="10,15,0,0" TextWrapping="Wrap" Text="Trainings Plan Name:" VerticalAlignment="Top" Width="130"/>
         <ComboBox HorizontalAlignment="Left" Height="25" Margin="80,85,0,0" VerticalAlignment="Top" Width="125" SelectedIndex="0" x:Name="diff">
             <ComboBoxItem>easy</ComboBoxItem>
@@ -16,10 +16,10 @@
             <ComboBoxItem>hard</ComboBoxItem>
         </ComboBox>
         <TextBlock HorizontalAlignment="Left" Height="20" Margin="10,90,0,0" TextWrapping="Wrap" Text="Difficulty:" VerticalAlignment="Top" Width="100"/>
-        <TextBox HorizontalAlignment="Left" Height="20" Margin="320,90,0,0" VerticalAlignment="Top" Width="125" InputMethod.InputScope="Number" Name="length"/>
+        <TextBox HorizontalAlignment="Left" Height="20" Margin="320,90,0,0" VerticalAlignment="Top" Width="125" PreviewTextInput="MaskNumericInput" DataObject.Pasting="MaskNumericPaste" Name="length"/>
 
         <TextBlock HorizontalAlignment="Left" Height="20" Margin="235,90,0,0" TextWrapping="Wrap" Text="Length (Days):" VerticalAlignment="Top" Width="100"/>
-        <TextBox HorizontalAlignment="Left" Height="20" Margin="640,90,0,0" VerticalAlignment="Top" Width="125" InputMethod.InputScope="Number" Name="training"/>
+        <TextBox HorizontalAlignment="Left" Height="20" Margin="640,90,0,0" VerticalAlignment="Top" Width="125" PreviewTextInput="MaskNumericInput" DataObject.Pasting="MaskNumericPaste" Name="training"/>
 
         <TextBlock HorizontalAlignment="Left" Height="20" Margin="495,90,0,0" TextWrapping="Wrap" Text="Training Length (Minutes):" VerticalAlignment="Top" Width="140"/>
 
@@ -30,5 +30,9 @@
         <CheckBox Content="Legs" HorizontalAlignment="Left" Height="15" Margin="25,240,0,0" VerticalAlignment="Top" Width="85" Name="leg"/>
         <TextBlock HorizontalAlignment="Left" Height="169" Margin="95,250,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="350" Name="feedback"/>
         <Button Content="Generate" HorizontalAlignment="Left" Height="65" Margin="545,325,0,0" VerticalAlignment="Top" Width="220" Click="generate"/>
+        <ComboBox HorizontalAlignment="Left" Height="25" Margin="635,135,0,0" VerticalAlignment="Top" Width="130" SelectedIndex="0" x:Name="time">
+            <ComboBoxItem>Use only Seconds</ComboBoxItem>
+            <ComboBoxItem>Use mostly Reps</ComboBoxItem>
+        </ComboBox>
     </Grid>
 </Window>
