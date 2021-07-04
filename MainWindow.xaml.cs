@@ -154,11 +154,13 @@ namespace Trainings_plan_Generator
                     }
                     if (work.Reps != 0)
                     {
-                        content.AppendLine("<li><a href='" + work.Tutorial + "'>Übung: " + work.Name + ",\t Reps: " + work.Reps + "  +  Pause (30sek) </a>");
+                        content.AppendLine("<li><a href='" + work.Tutorial + "'>Übung: " + work.Name + ",\t Reps: " + work.Reps + "</a>");
+                        content.AppendLine("<li>Pause (30sek)");
                     }
                     if (work.Reps == 0)
                     {
-                        content.AppendLine("<li><a href='" + work.Tutorial + "'>Übung: " + work.Name + ",\t 30sek  +  Pause (30sek)</a>");
+                        content.AppendLine("<li><a href='" + work.Tutorial + "'>Übung: " + work.Name + ",\t 30sek</a>");
+                        content.AppendLine("<li>Pause (30sek)");
                     }
                 }
             }
